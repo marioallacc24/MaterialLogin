@@ -13,8 +13,18 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
-        Background="#FF020000"
-        FontFamily="{DynamicResource MaterialDesignFont}" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" >
+        Background="Transparent"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True">
+
+    <Border BorderBrush="White"
+       BorderThickness="5"
+       CornerRadius="50"
+       Background="#FF020000">
+    
     <Grid>
 
         <StackPanel Margin="50">
@@ -40,4 +50,5 @@
         
         
     </Grid>
+    </Border>
 </Window>
