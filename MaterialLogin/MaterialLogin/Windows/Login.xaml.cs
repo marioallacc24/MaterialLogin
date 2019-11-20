@@ -1,6 +1,9 @@
-﻿using System;
+﻿using MaterialLogin.Class;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,6 +22,8 @@ namespace MaterialLogin
     /// </summary>
     public partial class Login : Window
     {
+        LoginHandler loginHandler = new LoginHandler("admin", "admin");
+
         public Login()
         {
             InitializeComponent();
@@ -28,5 +33,28 @@ namespace MaterialLogin
         {
             System.Windows.Application.Current.Shutdown();
         }
+
+        private void BtnUloguj_Click(object sender, RoutedEventArgs e)
+        {
+            String user = txtKorisnik.Text;
+            String pass = passLozinka.Password;
+
+            if (loginHandler.IsLoginIn(user, pass))
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                Close();
+            } else
+            {
+                SnackbarOne.IsActive = true;
+                txtKorisnik.Text = null;
+                passLozinka.Password = null;
+            }
+           
+         }
     }
+
+
 }
+

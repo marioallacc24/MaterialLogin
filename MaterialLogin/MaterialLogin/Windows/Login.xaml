@@ -33,22 +33,28 @@
 
             <Border Margin="10 20" Background="White" CornerRadius="5">
                 <StackPanel Margin="25">
-                    <TextBox Margin="20" materialDesign:HintAssist.Hint="Korisnicko ime" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox x:Name="txtKorisnik" Margin="20" materialDesign:HintAssist.Hint="Korisnicko ime" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <PasswordBox 
-                          x:Name="FloatingPasswordBox"
+                          x:Name="passLozinka"
                           Margin="20"
                           materialDesign:HintAssist.Hint="Lozinka"
                           Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button x:Name="btnOtkazi" Margin="20" Width="110" Content="OTKAZI" Click="BtnOtkazi_Click" />
-                        <Button x:Name="btnUloguj" Margin="20" Width="110" Content="ULOGUJ SE" />
+                        <Button x:Name="btnUloguj" Margin="20" Width="110" Content="ULOGUJ SE" Click="BtnUloguj_Click" />
                     </StackPanel>
                 </StackPanel>
             </Border>
 
         </StackPanel>
-        
-        
-    </Grid>
+
+
+            <materialDesign:Snackbar
+                Message="Uneli ste pogresne podatke"
+                IsActive="False"
+                x:Name="SnackbarOne" />   
+
+
+        </Grid>
     </Border>
 </Window>
