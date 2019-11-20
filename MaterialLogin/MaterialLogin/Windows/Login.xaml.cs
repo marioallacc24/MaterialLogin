@@ -23,5 +23,10 @@ namespace MaterialLogin
         {
             InitializeComponent();
         }
+
+        private void BtnOtkazi_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

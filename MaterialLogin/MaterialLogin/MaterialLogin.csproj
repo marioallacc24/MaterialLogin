@@ -110,7 +110,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Class\" />
-    <Folder Include="Res\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\edu_logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

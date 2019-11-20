@@ -5,8 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MaterialLogin"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
+        Title="Login" Height="600" Width="450"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="#FF020000"
+        FontFamily="{DynamicResource MaterialDesignFont}" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" >
     <Grid>
+
+        <StackPanel Margin="50">
+
+            <Image Source="/Res/edu_logo.png" Width="300" />
+
+            <Border Margin="10 20" Background="White" CornerRadius="5">
+                <StackPanel Margin="25">
+                    <TextBox Margin="20" materialDesign:HintAssist.Hint="Korisnicko ime" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <PasswordBox 
+                          x:Name="FloatingPasswordBox"
+                          Margin="20"
+                          materialDesign:HintAssist.Hint="Lozinka"
+                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="btnOtkazi" Margin="20" Width="110" Content="OTKAZI" Click="BtnOtkazi_Click" />
+                        <Button x:Name="btnUloguj" Margin="20" Width="110" Content="ULOGUJ SE" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+        
         
     </Grid>
 </Window>
