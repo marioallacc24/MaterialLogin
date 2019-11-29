@@ -1,6 +1,8 @@
-﻿using MaterialLogin.Class;
+﻿
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Resources;
@@ -22,7 +24,7 @@ namespace MaterialLogin
     /// </summary>
     public partial class Login : Window
     {
-        LoginHandler loginHandler = new LoginHandler("admin", "admin");
+        
 
         public Login()
         {
@@ -36,21 +38,41 @@ namespace MaterialLogin
 
         private void BtnUloguj_Click(object sender, RoutedEventArgs e)
         {
-            String user = txtKorisnik.Text;
-            String pass = passLozinka.Password;
 
-            if (loginHandler.IsLoginIn(user, pass))
-            {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
+            SQLiteConnection connection = new SQLiteConnection("Data Source=dbEducons.db;Version=3;");
+            if (connection.State == System.Data.ConnectionState.Closed)
+                connection.Open();
 
-                Close();
-            } else
+            try
             {
-                SnackbarOne.IsActive = true;
-                txtKorisnik.Text = null;
-                passLozinka.Password = null;
+                String query = "select count(1) from users where user=@korisnik and password=@sifra";
+                SQLiteCommand command = new SQLiteCommand(query, connection);
+
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@korisnik", txtKorisnik.Text);
+                command.Parameters.AddWithValue("@sifra", passLozinka.Password);
+                int count = Convert.ToInt32(command.ExecuteScalar());
+
+                if(count == 1)
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    Close();
+
+                } else
+                {
+                    SnackbarOne.IsActive = true;
+                }
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            } finally
+            {
+                connection.Close();
             }
+
+
            
          }
     }
